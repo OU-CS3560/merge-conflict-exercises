@@ -4,6 +4,26 @@
 
 This project is inspired by [Manual File Re-merging](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging#_manual_remerge) section of Git book.
 
+## Goals
+
+- Expose students to the nature of merge conflicts.
+- Create framework to deterministically create merge conflicts. The Git homework may or may not create merge conflict as it should.
+  An advantage of this environment is that there is a feedback to student on whether or not merge conflicts are solved.
+
+## Roadmap
+
+### Phase I
+
+- Create am open-source proof of concept of the exercise.
+
+### Phase II
+
+- Implementation of more problems.
+
+### Phase III
+
+- Deployment in actual classroom.
+
 ## Dependencies
 
 - Git for `git merge-file` command
