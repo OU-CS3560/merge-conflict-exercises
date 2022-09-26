@@ -31,11 +31,12 @@ Testing arbitrary set of problems.
 $ cd problems && make p1 p2 p5
 ```
 
-#### TA Experince
+#### TA Experience
 
 ```console
 $ # fixing / creating new problem
 $ python generator.py p1
+```
 
 ### Limitations
 
