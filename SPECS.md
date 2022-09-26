@@ -1,8 +1,8 @@
 # Specifications
 
-## Experiences
+## User Stories
 
-### End-user Experience
+### End-users / Students
 
 Fix and test one problem at a time.
 
@@ -15,7 +15,7 @@ $ # fixing the merge conflict(s)
 $ make test  # build test cases and run them.
 ```
 
-### CI/CD Experience
+### CI/CD
 
 Test all problems.
 
@@ -29,17 +29,14 @@ Testing arbitrary set of problems.
 $ cd problems && make p1 p2 p5
 ```
 
-### TA Experience
+### TA
 
-```console
-$ # fixing / creating new problem
-$ python generator.py p1
-```
+Only manually crafting each problem is possible.
 
 ## Limitations
 
-- Helper program, if needed, have to be written in C++ only. Python would be ideal but studets will have to install Python runtime.
-- Build system is limited to only Make. This is because class content only cover Make.
+- Helper program, if needed, have to be written in C++ only. Python would be ideal but students will have to install Python runtime.
+- Build system is limited to only Make. This is because class content only cover Make. Using cmake will also require students to install it.
 
 ## Project Structure
 
@@ -51,44 +48,36 @@ problems/common/vendors/
 problems/common/vendors/catch2/catch.hpp # from https://raw.githubusercontent.com/catchorg/Catch2/v2.x/single_include/catch2/catch.hpp
 problems/p1/
 problems/p1/Makefile
+problems/p1/dynamic.mk
 problems/p1/.template/
 problems/p1/.template/filename.common.suffix
 problems/p1/.template/filename.ours.suffix
 problems/p1/.template/filename.theirs.suffix
-problems/p1/.template/Makefile.common  # support for generating merge conflicts in Makefile ?
-problems/p1/.template/Makefile.ours
-problems/p1/.template/Makefile.theirs
 problems/p1/test_main.cpp
 ```
 
-```makefile
-# p1/Makefile
-help:
-  @echo "usage: make [command]"
- 
-generate:
-  @echo "generate merge conflcit(s)"
-  # Steps
-  # 1. Copy catch.hpp into this directory
-  # 2. Copy non-conflict files into working directory
-  # 3. Create merge conflicts for each file that has them.
+### Makefile
 
-test:
-  @echo "test"
-  # Steps
-  # 1. Compile source files.
-  # 1. Compile test cases under tests/
-  # 2. Run test
+Central Makefile. This should allow test to be selectively run.
 
-clean:
-  @echo "removing build artifacts"
+### Files in a Problem
 
-reset:
-  @echo "resetting workspace"
-  # TODO(KC): Add confirmation prompt.
-```
+#### Makefile
 
-### generator.py Idea
+The `Makefile` contains only code that is common to all problem. It should not be modified directly.
+Instead put targets that are specific to this problem in `dynamic.mk`. The `dynamic.mk` will be
+included into the main Makefile.
 
-Initially, using `generator.py` to automatically generate merge conflicts seem to be good idea, but currently manually
-write `generate` taget for each problem seems feasible enough.
+#### dynamic.mk
+
+Contain targets that are unique to this problem only. This includes variables like `LIB_OBJS`, `TEST_CASE_OBJS`.
+The definition of the target `generate`, and `reset` also goes here.
+
+#### .template/
+
+This folder is used to store file that `git merge-file` will run against. It also used to store
+file that will be copy over to the working directory.
+
+#### test_main.cpp
+
+Standard file that only have two lines.

@@ -1,4 +1,4 @@
-#include "../catch.hpp"
+#include "../../common/vendors/catch2/catch.hpp"
 
 #include "../bobcat_math.h"
 
