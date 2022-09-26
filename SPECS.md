@@ -1,5 +1,16 @@
 # Specifications
 
+## Inspiration
+
+This project is inspired by [Manual File Re-merging](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging#_manual_remerge) section of Git book.
+
+## Dependencies
+
+- Git for `git merge-file` command
+- GNU Make
+- GNU C++ Compiler
+- Catch2 Test Framework
+
 ## User Stories
 
 ### End-users / Students
